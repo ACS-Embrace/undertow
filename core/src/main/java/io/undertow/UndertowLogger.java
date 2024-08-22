@@ -469,6 +469,11 @@ public interface UndertowLogger extends BasicLogger {
     @Message(id = 5102, value = "Flushing waiting in a frame more than %s miliseconds. The framed channel will be forcibly closed.")
     void noFrameflushInTimeout(long timeoutMiliseconds);
 
+    @LogMessage(level = ERROR)
+    @Message(id = 5107, value = "SSL outstanding task loop detected in doWrap/doUnwrap calls. This is indicative of task thread exhaustion so consider investigating any slowness and thread exhaustion concerns via thread dumps and increasing task-max-threads as needed. Current state %s")
+    void sslTaskLoopDetected(SslConduit sslConduit);
+
+
     @LogMessage(level = WARN)
     @Message(id = 5103, value = "Cache TTL set to wrong value '%sms'. Defaulting to '%sms'.")
     void wrongCacheTTLValue(int ttl, int defaultTtl);
